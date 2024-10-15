@@ -29,7 +29,6 @@
     <div class="ml-auto">
         <div class="dropdown">
 
-
             <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                 <!-- Conditionally render the profile picture or a fallback with the first letter of the user's first name -->
@@ -45,10 +44,6 @@
                 <span th:text="${firstName}">FirstName</span>
             </a>
 
-
-
-
-
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-item" th:href="@{/profile}">Profile</a>
                 <a class="dropdown-item" th:href="@{/logout}">Logout</a>
@@ -57,41 +52,37 @@
     </div>
 </nav>
 
-<!-- Main Content Section -->
-<div class="container mt-4">
-    <h1 class="display-4">Welcome, <span th:text="${firstName} + ' ' + ${lastName}">FirstName LastName</span>!</h1>
-    <p>Email: <span th:text="${email}">[Email]</span></p>
+<div class="jumbotron jumbotron-custom">
+    <div class="container mt-4">
+        <h1 class="display-4">Welcome, <span th:text="${firstName} + ' ' + ${lastName}">FirstName LastName</span>!</h1>
+        <p>Email: <span th:text="${email}">[Email]</span></p>
 
-    <!-- Conditionally render the profile picture or a fallback with the first letter of the user's first name -->
-    <div th:if="${profilePictureUrl != null}">
-        <img th:src="${profilePictureUrl}" alt="Profile Picture" class="profile-picture" />
-    </div>
-    <div th:if="${profilePictureUrl == null}">
-        <div class="profile-initial">
-            <span th:text="${firstName.substring(0, 1)}">F</span> <!-- Display the first letter of the user's first name -->
+        <!-- Conditionally render the profile picture or a fallback with the first letter of the user's first name -->
+        <div th:if="${profilePictureUrl != null}">
+            <img th:src="${profilePictureUrl}" alt="Profile Picture" class="profile-picture" width="150" height="150" />
         </div>
+        <div th:if="${profilePictureUrl == null}">
+            <div class="profile-initial" style="width: 150px; height: 150px; border-radius: 50%; background-color: #007bff; color: white; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                <span th:text="${firstName.substring(0, 1)}">F</span> <!-- Display the first letter of the user's first name -->
+            </div>
+        </div>
+
+        <p>You are successfully logged in using Google OAuth2.</p>
+        <a class="btn btn-secondary" th:href="@{/}" role="button">Back to Home</a>
     </div>
-
-    <p>You are successfully logged in using Google OAuth2.</p>
-    <a class="btn btn-secondary" th:href="@{/}" role="button">Back to Home</a>
 </div>
-
 
 <div class="container mt-4">
 
-    <h1 class="display-4">User Details</h1>
-
+    <h1 class="display-4">Process Details</h1>
 
 </div>
-
 
 <div class="container mt-4">
 
-    <h1 class="display-4">User Purchases</h1>
-
+    <h1 class="display-4">Scraped Items</h1>
 
 </div>
-
 
 <!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
