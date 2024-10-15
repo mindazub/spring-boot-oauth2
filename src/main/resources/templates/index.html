@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .navbar-brand img {
+            width: 50px;
+            height: 50px;
+        }
+        .jumbotron-custom {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!-- Header Section -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <a class="navbar-brand" href="#">
+        <img src="/images/EVL_logo_JV.png" alt="Company Logo"> <!-- Replace with actual logo -->
+    </a>
+
+    <div class="ml-auto">
+        <!-- Check if user is authenticated -->
+        <div th:if="${#authorization.expression('isAuthenticated()')}">
+            <!-- Show user info if authenticated -->
+            <span class="navbar-text mr-3">
+                Welcome, <span th:text="${#authentication.principal.firstName}">User</span>!
+            </span>
+            <a class="btn btn-outline-secondary" th:href="@{/logout}">
+                Logout
+            </a>
+        </div>
+        <div th:unless="${#authorization.expression('isAuthenticated()')}">
+            <!-- Show login button if not authenticated -->
+            <a class="btn btn-outline-primary" th:href="@{/oauth2/authorization/google}">
+                Login with Google
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- Jumbotron Section -->
+<div class="jumbotron jumbotron-custom">
+    <h1 class="display-4">Welcome to Our Company!</h1>
+    <p class="lead">Your business motto goes here. Making the world a better place with our solutions!</p>
+    <hr class="my-4">
+    <p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </p>
+</div>
+
+<div class="container mt-4">
+    <h2>Other Products:</h2>
+    <!-- Other product listings go here -->
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

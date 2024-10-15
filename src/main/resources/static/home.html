@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Info</title>
+    <style>
+        /* Style for the round profile picture */
+        .profile-picture {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        /* Style for the fallback profile picture (initial letter) */
+        .profile-initial {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome, <span th:text="${firstName} + ' ' + ${lastName}">[FirstName LastName]</span></h1>
+<p>Email: <span th:text="${email}">[Email]</span></p>
+
+<!-- Conditionally render the profile picture or a fallback with the first letter of the user's first name -->
+<div th:if="${profilePictureUrl != null}">
+    <img th:src="${profilePictureUrl}" alt="Profile Picture" class="profile-picture" />
+</div>
+<div th:if="${profilePictureUrl == null}">
+    <div class="profile-initial">
+        <span th:text="${firstName.substring(0, 1)}">F</span> <!-- Display the first letter of the user's first name -->
+    </div>
+</div>
+
+<p>You are successfully logged in using Google OAuth2.</p>
+
+<a href="/logout">Logout</a>
+</body>
+</html>

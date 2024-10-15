@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Info</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .navbar-brand img {
+            width: 50px;
+            height: 50px;
+        }
+        .profile-picture {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+<!-- Header Section -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="/images/EVL_logo_JV.png" alt="Company Logo"> <!-- Replace with actual logo -->
+    </a>
+
+    <div class="ml-auto">
+        <div class="dropdown">
+
+
+            <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                <!-- Conditionally render the profile picture or a fallback with the first letter of the user's first name -->
+                <div th:if="${profilePictureUrl != null}">
+                    <img th:src="${profilePictureUrl}" alt="Profile Picture" class="profile-picture" />
+                </div>
+                <div th:if="${profilePictureUrl == null}">
+                    <div class="profile-initial">
+                        <span th:text="${firstName.substring(0, 1)}">F</span> <!-- Display the first letter of the user's first name -->
+                    </div>
+                </div>
+
+                <span th:text="${firstName}">FirstName</span>
+            </a>
+
+
+
+
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" th:href="@{/profile}">Profile</a>
+                <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content Section -->
+<div class="container mt-4">
+    <h1 class="display-4">Welcome, <span th:text="${firstName} + ' ' + ${lastName}">FirstName LastName</span>!</h1>
+    <p>Email: <span th:text="${email}">[Email]</span></p>
+
+    <!-- Conditionally render the profile picture or a fallback with the first letter of the user's first name -->
+    <div th:if="${profilePictureUrl != null}">
+        <img th:src="${profilePictureUrl}" alt="Profile Picture" class="profile-picture" />
+    </div>
+    <div th:if="${profilePictureUrl == null}">
+        <div class="profile-initial">
+            <span th:text="${firstName.substring(0, 1)}">F</span> <!-- Display the first letter of the user's first name -->
+        </div>
+    </div>
+
+    <p>You are successfully logged in using Google OAuth2.</p>
+    <a class="btn btn-secondary" th:href="@{/}" role="button">Back to Home</a>
+</div>
+
+
+<div class="container mt-4">
+
+    <h1 class="display-4">User Details</h1>
+
+
+</div>
+
+
+<div class="container mt-4">
+
+    <h1 class="display-4">User Purchases</h1>
+
+
+</div>
+
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

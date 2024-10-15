@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .profile-container {
+            margin: 20px;
+            text-align: center;
+        }
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Make it round */
+        }
+        .profile-header {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<!-- Header Section -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/static">
+        <img src="/images/EVL_logo_JV.png" alt="Company Logo" width="50" height="50"> <!-- Replace with actual logo -->
+    </a>
+    <div class="ml-auto">
+        <a class="btn btn-outline-danger" th:href="@{/logout}">
+            Logout
+        </a>
+    </div>
+</nav>
+
+<div class="profile-container">
+    <h1 class="profile-header">User Profile</h1>
+
+    <img th:src="${profilePictureUrl}" alt="Profile Picture" class="profile-picture" onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=${firstName.charAt(0)}';" />
+
+    <h2>Hello, <span th:text="${firstName}">[First Name]</span> <span th:text="${lastName}">[Last Name]</span></h2>
+    <p>Email: <span th:text="${email}">[Email]</span></p>
+
+    <a class="btn btn-primary" th:href="@{/home}">Back to Home</a>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
