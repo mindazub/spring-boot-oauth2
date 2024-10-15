@@ -23,24 +23,20 @@
 <!-- Header Section -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
-        <img src="/images/EVL_logo_JV.png" alt="Company Logo"> <!-- Replace with actual logo -->
+        <img src="/images/EVL_logo_JV.png" alt="Company Logo">
     </a>
 
     <div class="ml-auto">
         <div class="dropdown">
-
             <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-                <!-- Conditionally render the profile picture or a fallback with the first letter of the user's first name -->
                 <div th:if="${profilePictureUrl != null}">
                     <img th:src="${profilePictureUrl}" alt="Profile Picture" class="profile-picture" />
                 </div>
                 <div th:if="${profilePictureUrl == null}">
                     <div class="profile-initial">
-                        <span th:text="${firstName.substring(0, 1)}">F</span> <!-- Display the first letter of the user's first name -->
+                        <span th:text="${firstName.substring(0, 1)}">F</span>
                     </div>
                 </div>
-
                 <span th:text="${firstName}">FirstName</span>
             </a>
 
@@ -57,13 +53,12 @@
         <h1 class="display-4">Welcome, <span th:text="${firstName} + ' ' + ${lastName}">FirstName LastName</span>!</h1>
         <p>Email: <span th:text="${email}">[Email]</span></p>
 
-        <!-- Conditionally render the profile picture or a fallback with the first letter of the user's first name -->
         <div th:if="${profilePictureUrl != null}">
             <img th:src="${profilePictureUrl}" alt="Profile Picture" class="profile-picture" width="150" height="150" />
         </div>
         <div th:if="${profilePictureUrl == null}">
             <div class="profile-initial" style="width: 150px; height: 150px; border-radius: 50%; background-color: #007bff; color: white; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
-                <span th:text="${firstName.substring(0, 1)}">F</span> <!-- Display the first letter of the user's first name -->
+                <span th:text="${firstName.substring(0, 1)}">F</span>
             </div>
         </div>
 
@@ -73,16 +68,169 @@
 </div>
 
 <div class="container mt-4">
-
     <h1 class="display-4">Process Details</h1>
 
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Pigu XML</h5>
+                    <p class="card-text">Scrape Pigu.lt sitemap.xml.</p>
+                    <a href="#" class="btn btn-primary">Start Process</a>
+                    <br>
+                    <a href="#" class="small">More Info</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">BK XML</h5>
+                    <p class="card-text">Scrape bkgrupe.lt sitemap.xml</p>
+                    <a href="#" class="btn btn-primary">Start Process</a>
+                    <br>
+                    <a href="#" class="small">More Info</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">CV bankas Items</h5>
+                    <p class="card-text">Get total items on CV bankas portal.</p>
+                    <a href="#" class="btn btn-primary">Start Process</a>
+                    <br>
+                    <a href="#" class="small">More Info</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="container mt-4">
-
     <h1 class="display-4">Scraped Items</h1>
-
+    <!-- Canvas element for the chart -->
+    <canvas id="scrapeChart" width="400" height="200"></canvas>
 </div>
+
+<div class="container mt-4">
+    <h1 class="display-4">List of Product Providers</h1>
+    <!-- Canvas element for the chart -->
+</div>
+
+<!-- Bootstrap 5 Sticky Footer -->
+<footer class="footer mt-auto py-3 bg-dark text-light">
+    <div class="container">
+        <div class="row py-4">
+            <!-- Column 1: Company Information -->
+            <div class="col-md-4">
+                <h5>Company Name</h5>
+                <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </div>
+            <!-- Column 2: Useful Links -->
+            <div class="col-md-4">
+                <h5>Useful Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-light">Your Account</a></li>
+                    <li><a href="#" class="text-light">Become an Affiliate</a></li>
+                    <li><a href="#" class="text-light">Shipping Rates</a></li>
+                    <li><a href="#" class="text-light">Help</a></li>
+                </ul>
+            </div>
+            <!-- Column 3: Contact Information -->
+            <div class="col-md-4">
+                <h5>Contact</h5>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-map-marker-alt"></i> New York, NY 10012, US</li>
+                    <li><i class="fas fa-envelope"></i> info@gmail.com</li>
+                    <li><i class="fas fa-phone"></i> + 01 234 567 88</li>
+                    <li><i class="fas fa-print"></i> + 01 234 567 89</li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <small>&copy; 2024 Company Name. All Rights Reserved.</small>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap 5 and FontAwesome JS (for icons) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/luxon@2.0.2/build/global/luxon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon"></script>
+
+<script>
+    // Time series data (example)
+    const labels = ['2024-10-10T10:00:00', '2024-10-10T11:00:00', '2024-10-10T12:00:00', '2024-10-10T13:00:00', '2024-10-10T14:00:00'];
+
+    const data = {
+        labels: labels.map(date => luxon.DateTime.fromISO(date)),
+        datasets: [
+            {
+                label: 'Items from Source A',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                data: [50, 100, 150, 200, 250],
+                fill: false,
+            },
+            {
+                label: 'Items from Source B',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                data: [60, 120, 180, 240, 300],
+                fill: false,
+            },
+            {
+                label: 'Items from Source C',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                data: [40, 80, 120, 160, 200],
+                fill: false,
+            },
+        ]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Scraped Items Over Time'
+                }
+            },
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'hour',
+                        tooltipFormat: 'YYYY-MM-DD HH:mm',
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 50
+                    }
+                }
+            }
+        }
+    };
+
+    const ctx = document.getElementById('scrapeChart').getContext('2d');
+    new Chart(ctx, config);
+</script>
 
 <!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
